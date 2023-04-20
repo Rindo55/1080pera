@@ -10,13 +10,13 @@ from main.inline import button1
 
 def trim_title(title: str):
     title = title.rsplit(' ', 1)[0]
-    title = title.replace("[Magnet]", "")
+    title = title.replace("[Erai-raws]", "")
     title = title.replace("Ijiranaide, Nagatoro-san S2", "Ijiranaide, Nagatoro-san 2")
     title = title.replace("Shinka", "Shin Shinka")
     return title
 
 def parse():
-    a = feedparser.parse("https://www.erai-raws.info/episodes/feed/?res=1080p&type=torrent&0879fd62733b8db8535eb1be24e23f6d")
+    a = feedparser.parse("https://www.tokyotosho.info/rss.php?filter=1&maxMB=1950&submitter=Erai-raws&terms=1080p&reversepolarity=1")
     b = a["entries"]
     b = b[0:10]
     data = []    
@@ -24,7 +24,7 @@ def parse():
     for i in b:
         item = {}
         item['title'] = trim_title(i['title'])
-        item['size'] = i['erai_size']
+        item['size'] = i['size']
         item['link'] = i['link']
         data.append(item)
     data.reverse()
