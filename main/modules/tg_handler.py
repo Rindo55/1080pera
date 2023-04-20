@@ -113,7 +113,7 @@ async def start_uploading(data):
         fpath = "downloads/" + name
         KAYO_ID = -1001948444792
         title = title.rsplit(' ', 1)[0]
-        
+        title = title.replace("Magnet", "")
         name = name.rsplit(' ', 1)[0]
         name = name.replace("[Magnet]", "")
         name = name.replace(f" @animxt.mkv","")
