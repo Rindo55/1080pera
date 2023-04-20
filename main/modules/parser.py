@@ -9,15 +9,13 @@ from main import queue
 from main.inline import button1
 
 def trim_title(title: str):
-    title, ext = title.replace("[SubsPlease]","").strip().split("[",maxsplit=2)
-    _, ext = ext.split("]",maxsplit=2)
-    title = title.strip() + ext
+    title = title.replace("[Magent]", "")
     title = title.replace("Ijiranaide, Nagatoro-san S2", "Ijiranaide, Nagatoro-san 2")
     title = title.replace("Shinka", "Shin Shinka")
     return title
 
 def parse():
-    a = feedparser.parse("https://subsplease.org/rss/?r=1080")
+    a = feedparser.parse("https://www.erai-raws.info/episodes/feed/?res=1080p&type=torrent&0879fd62733b8db8535eb1be24e23f6d")
     b = a["entries"]
     b = b[0:10]
     data = []    
@@ -25,7 +23,7 @@ def parse():
     for i in b:
         item = {}
         item['title'] = trim_title(i['title'])
-        item['size'] = i['subsplease_size']
+        item['size'] = i['erai_size']
         item['link'] = i['link']
         data.append(item)
     data.reverse()
