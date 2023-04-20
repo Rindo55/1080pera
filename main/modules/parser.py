@@ -46,7 +46,7 @@ async def auto_parser():
 
         uanimes = []
         for i in uploaded:
-            uanimes.append(i["naem"])
+            uanimes.append(i["name"])
         
         for i in rss:
             if i["title"] not in uanimes and i["title"] not in saved_anime:
