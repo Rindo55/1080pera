@@ -42,11 +42,11 @@ async def auto_parser():
 
         saved_anime = []
         for i in data:
-            saved_anime.append(i["name"])
+            saved_anime.append(i["title"])
 
         uanimes = []
         for i in uploaded:
-            uanimes.append(i["name"])
+            uanimes.append(i["title"])
         
         for i in rss:
             if i["title"] not in uanimes and i["title"] not in saved_anime:
@@ -58,7 +58,7 @@ async def auto_parser():
         for i in data:
             if i["data"] not in queue:
                 queue.append(i["data"])    
-                print("Saved ", i["name"])   
+                print("Saved ", i["title"])   
 
         try:
             await status.edit(await status_text("Idle..."),reply_markup=button1)
