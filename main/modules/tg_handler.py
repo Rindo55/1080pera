@@ -106,13 +106,15 @@ async def start_uploading(data):
 
         size = data["size"]
 
-        name, ext = title.split(".")
+        name = title
 
-        name += f" @animxt." + ext
+        name += f" @animxt.mkv"
 
         fpath = "downloads/" + name
         KAYO_ID = -1001948444792
-        name = name.replace(f" @animxt.","").replace(ext,"").strip()
+        name = name.rsplit(' ', 1)[0]
+        name = name.replace("[Magnet]", "")
+        name = name.replace(f" @animxt.mkv","")
         id, img, tit = await get_anime_img(get_anime_name(title))
         msg = await app.send_photo(UPLOADS_ID,photo=img,caption=title)
         img, caption = await get_anilist_data(title)
@@ -132,9 +134,9 @@ async def start_uploading(data):
         duration = get_duration(file)
         filed = os.path.basename(file)
         filed = filed.rsplit(' ', 1)[0]
-        filed = filed.replace("[SubsPlease]", "")
+        filed = filed.replace("[Magnet]", "")
         filed = filed.replace("Shinka", "Shin Shinka")
-        filed = filed.replace("(1080p)", "[1080p Web-DL].mkv")
+        filed = f"{filed}.mkv"
         bpath = "downloads/" + filed
         ghostname = name
         ghostname = ghostname.replace("(1080p)", "")
